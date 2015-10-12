@@ -13,7 +13,7 @@
       </template>
     </ul>
     <iron-ajax auto url="{{url}}" handle-as="text" last-response="{{markdown}}"></iron-ajax>
-    <template is="dom-repeat" items="{{markdown}}" filter="pathFolder">
+    <template is="dom-repeat" items="{{markdownList}}" filter="pathFolder">
       <iron-ajax auto url="{{item}}" handle-as="text" last-response="{{display}}"></iron-ajax>
       <paper-material>
         <marked-element>{{display}}</marked-element>
@@ -33,8 +33,9 @@
         type: String,
         value:"blog"
       },
+      markdownList {computed:"getMarkdownList(markdown)"},
       headings: {
-        conputed:"getHeadings(markdown)"
+        computed:"getHeadings(markdown)"
       }
     },
     pathFolder: function(item) {
@@ -42,6 +43,9 @@
     },
     getHeadings: function(markdown) {
       return ""// dom h1
+    },
+    getMarkdownList: function(markdown) {
+      return markdown.split('\n')
     }
   });
 </script>

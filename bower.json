@@ -1,0 +1,12 @@
+{
+  "name": "md-display",
+  "version": "1.0.0",
+  "description": "md-display",
+  "main": "md-display.html",
+  "keywords": [
+    "polymer","web-components"
+  ],
+  "dependencies": {
+    "polymer/polymer": "*"
+  }
+}

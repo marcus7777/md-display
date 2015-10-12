@@ -49,7 +49,7 @@
       return ""// dom h1
     },
     getMarkdownList: function(markdown) {
-      return markdown.replace(/\n/g,'\n\\').split('\n')
+      return ("/"+markdown).replace(/\n/g,'\n\\').split('\n')
     }
   });
 </script>

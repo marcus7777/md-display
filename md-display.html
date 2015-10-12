@@ -31,7 +31,7 @@
       },
       folder:{ 
         type: String,
-        value:"blog"
+        value:""
       },
       markdownList: {computed:"getMarkdownList(markdown)"},
       headings: {
@@ -39,7 +39,11 @@
       }
     },
     pathFolder: function(item) {
-      return item.indexOf(this.folder) === -1
+      if (this.folder !== "") {
+        return item.indexOf(this.folder) === -1
+      } else {
+        return true
+      }
     },
     getHeadings: function(markdown) {
       return ""// dom h1

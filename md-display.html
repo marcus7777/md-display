@@ -8,8 +8,10 @@
 <dom-module id="md-display">
   <template>
     <iron-ajax auto url="/markdown" handle-as="text" last-response="{{markdown}}"></iron-ajax>
-    <template is="dom-repeat" items="{{markdown}}" filter="pathFolder" >
-      <marked-element>{{item}}</marked-element>
+    <template is="dom-repeat" items="{{markdown}}">
+      <paper-material>
+        <marked-element>{{item}}</marked-element>
+      </paper-material>
     </template>
   </template>
 </dom-module>

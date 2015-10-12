@@ -1,14 +1,14 @@
 <link rel="import" href="../marked-element/marked-element.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
 <!--
-`<md-display>` # Displays md files form a list of files as a file
+`<md-display url="/markdown" type="blog-posts"><md-display>` # Displays md files form a list of files as a file
 @demo demo.html
 -->
 
 <dom-module id="md-display">
   <template>
     <iron-ajax auto url="/markdown" handle-as="text" last-response="{{markdown}}"></iron-ajax>
-    <template is="dom-repeat" items="{{markdown}}">
+    <template is="dom-repeat" items="{{markdown}}" filter="pathFolder" >
       <marked-element>{{item}}</marked-element>
     </template>
   </template>
@@ -16,5 +16,18 @@
 <script>
   Polymer({
     is: "md-display"
+    properties: {
+      url: {
+        type: String,
+        value:"/md"
+      },
+      folder:{ 
+        type: String,
+        value:"blog"
+      },
+    },
+    pathFolder(item) {
+      return item.indexOf(this.folder) === -1
+    }
   });
 </script>

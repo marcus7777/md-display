@@ -7,10 +7,16 @@
 
 <dom-module id="md-display">
   <template>
-    <iron-ajax auto url="/markdown" handle-as="text" last-response="{{markdown}}"></iron-ajax>
-    <template is="dom-repeat" items="{{markdown}}">
+    <ul>
+      <template is="dom-repeat" items="{{headings}}">
+        <li>{{item}}</li>
+      </template>
+    </ul>
+    <iron-ajax auto url="{{url}}" handle-as="text" last-response="{{markdown}}"></iron-ajax>
+    <template is="dom-repeat" items="{{markdown}}" filter="pathFolder">
+      <iron-ajax auto url="{{item}}" handle-as="text" last-response="{{display}}"></iron-ajax>
       <paper-material>
-        <marked-element>{{item}}</marked-element>
+        <marked-element>{{display}}</marked-element>
       </paper-material>
     </template>
   </template>
@@ -21,15 +27,21 @@
     properties: {
       url: {
         type: String,
-        value:"/md"
+        value:"/markdown"
       },
       folder:{ 
         type: String,
         value:"blog"
       },
+      headings: {
+        conputed:"getHeadings(markdown)"
+      }
     },
     pathFolder(item) {
       return item.indexOf(this.folder) === -1
+    },
+    getHeadings(markdown) {
+      return // dom h1
     }
   });
 </script>

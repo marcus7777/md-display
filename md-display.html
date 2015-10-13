@@ -16,7 +16,7 @@
     <template is="dom-repeat" items="{{markdownList}}" filter="pathFolder">
       <iron-ajax auto url="{{item}}" handle-as="text" last-response="{{display}}"></iron-ajax>
       <paper-material>
-        <marked-element>{{display}}</marked-element>
+        <marked-element markdown="{{display}}"></marked-element>
       </paper-material>
     </template>
   </template>
@@ -40,7 +40,7 @@
     },
     pathFolder: function(item) {
       if (this.folder !== "") {
-        return item.indexOf(this.folder) === -1
+        return item.indexOf(this.folder) !== -1
       } else {
         return true
       }
